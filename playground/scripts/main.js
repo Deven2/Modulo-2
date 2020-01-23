@@ -1,6 +1,6 @@
 console.log('Starting JavaScript...');
 console.log('')
-// Comienza JavaScripts Basics
+// Comienza JavaScripts Basics  
 console.log('JavaScript Basics')
 let myName = 'Nicolas';
 console.log('My name: ' + myName);
@@ -167,11 +167,7 @@ function repeatedNumbers(numbersArray){
 
 	if(repeated.length>0){	
 		let b=0;
-		console.log('The numbers that repeat are: ')
-		while(b<repeated.length){
-			console.log(repeated[b])
-			b++;
-		}
+		console.log('The numbers that repeat are: ' + repeated.toString());
 	}
 	else{
 		console.log('There are not repeated numbers in this array.')
@@ -179,3 +175,89 @@ function repeatedNumbers(numbersArray){
 
 }
 repeatedNumbers(classAges);
+console.log(' ');
+
+// Ejercicio 7
+console.log('Ejercise 7');
+
+let myColor = ["Red", "Green", "White", "Black"];
+console.log('My colors are: ' + myColor.toString());
+console.log(' ');
+
+// Comienza Strings
+console.log('String Functions');
+console.log(' ');
+
+// Ejercicio 1
+console.log('Excercise 1');
+
+function reverseNumber(number){
+	number = number + '';
+	console.log(number.split('').reverse().join(''));
+}
+
+reverseNumber(383829);
+console.log(' ');
+
+// Ejercicio 2
+console.log('Excercise 2');
+
+function reverseString(string){
+	console.log(string.toLowerCase().split('').sort().join());
+}
+
+reverseString('Institucion');
+console.log(' ');
+
+// Ejercicio 3
+console.log('Excercise 3');
+
+function upCaseFirstLetters(string){
+	string = string.split(' ');
+	if(string.length!=1){
+		for(let i=0; i<string.length; i++){
+			string[i]=string[i].charAt(0).toUpperCase() + string[i].slice(1);
+		}
+		console.log(string.join(' '));
+	}
+	else{
+		string=string.join('');
+		console.log(string.charAt(0).toUpperCase() + string.slice(1));
+	}
+}
+
+upCaseFirstLetters('hola que tal');
+upCaseFirstLetters('profesores')
+
+console.log(' ');
+
+// Ejercicio 4
+console.log('Excercise 4');
+
+function longestWord(string){
+	let longestW;
+
+	string=string.split(' ');
+
+	if(string.length>1){
+		for(let i=0; i<string.length; i++){
+			if(i==0){
+				longestW=string[i];
+			}
+			else{
+				if(string[i].length>longestW.length){
+					longestW=string[i];
+				}
+			}
+		}
+		console.log('The longest word of this string is: ' + longestW);
+	}
+	else{
+		longestW=string[0];
+		console.log('This string has only one word and it is: ' + longestW);
+	}
+}
+
+longestWord('Es la casa de algun pterodactilo');
+longestWord('Manzana');
+console.log(' ');
