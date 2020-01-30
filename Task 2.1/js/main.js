@@ -9,6 +9,7 @@ members.forEach(members =>{
 function filter(){
 	let checks = document.getElementsByClassName("party");
 	document.querySelector("tbody").innerHTML = '';
+	
 	for (let i = 0; i<checks.length; i++){
 		if (checks[i].checked){
 			members.filter(e => checks[i].value == e.party).forEach(members =>{
