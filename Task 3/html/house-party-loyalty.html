@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>TGIF Senate</title>
+        <title>TGIF House</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/95098fce4b.js" crossorigin="anonymous"></script>
     </head>
@@ -54,60 +54,58 @@
         <!--Table container-->
         <main class="d-flex flex-wrap container">
           <div class="col-6">
-            <h2>Attendance</h2>
-            <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
+            <h2>Party Loyalty</h2>
+            <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. </p>
+    	   </div>
 
-            <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
-          </div>
+            <div class="container col-6">
+               <h2>House at a glance</h2>
+                <table class="container table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Party</th>
+                            <th>N° of Representatives</th>
+                            <th>% Voted with Prty</th>
+                        </tr>
+                    </thead>
+                    <tbody id="glance"></tbody>
+                </table>
+            </div>
 
-          <div class="container col-6">
-            <h2>Senate at a glance</h2>
-            <table class="container table table-striped">
-              <thead>
-                  <tr>
-                      <th>Party</th>
-                      <th>N° of Representatives</th>
-                      <th>% Voted with Party</th>
-                  </tr>
-              </thead>
-              <tbody id="glance"></tbody>
-            </table>
-          </div> 
+            <div class="col-6">
+                <h2>Least Loyal (Bottom 10% of Party)</h2>
+                <table class="container table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>N° of Party Votes</th>
+                            <th>% of Party Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="least_loyal"></tbody>
+                </table>
+            </div>
 
-          <div class="col-6">  
-            <h2>Least Engaged (Bottom 10% Attendance)</h2>
-            <table class="container table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>N° of Missed Votes</th>
-                        <th>% Missed</th>
-                    </tr>
-                </thead>
-                <tbody id="least_engaged"></tbody>
-            </table>
-          </div>
-
-          <div class="col-6">
-            <h2>Most Engaged (Top 10% Attendance)</h2>
-            <table class="container table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of Missed Votes</th>
-                        <th>% Missed</th>
-                    </tr>
-                </thead>
-                <tbody id="most_engaged"></tbody>
-            </table>
-          </div>
+            <div class="col-6">
+                <h2>Most Loyal (Top 10% of Party)</h2>
+                <table class="container table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>N° of Party Votes</th>
+                            <th>% of Party Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="most_loyal"></tbody>
+                </table>
+            </div>
     	  </main>    
 
       <footer class="d-flex justify-content-center border-top p-3 bg-light">© 2016 TGIF | All Rigths Reserved</footer>
 
         <!-- Llamo a la informacion -->
-        <script src="../js/pro-congress-133-senate.js"></script> 
-        <script src="../js/attendance-statistics.js"></script>
+        <script src="../js/pro-congress-133-house.js"></script> 
+        <script src="../js/loyalty-statistics.js"></script>
 
         <!-- Links de boostrap -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
