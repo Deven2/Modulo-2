@@ -1,9 +1,12 @@
 let data;
+let url;
 
 if(document.querySelector("#senators")){
-	let url = "https://api.propublica.org/congress/v1/113/senate/members.json"
+	url = "https://api.propublica.org/congress/v1/113/senate/members.json"
 }
-else{ let url = "https://api.propublica.org/congress/v1/113/house/members.json"}
+else{
+	url = "https://api.propublica.org/congress/v1/113/house/members.json"
+}
 
 let init = {
     method: 'GET',
@@ -33,6 +36,8 @@ async function getList (url, init){
 	
 	loadLoyaltyPage();
 };
+
+getList(url,init);
 
 function loadLoyaltyPage (){
 	// CARGO MIEMBROS
