@@ -52,7 +52,7 @@
           </div>
         </nav>
 
-        <!--Table container-->
+        <!--Table container-->  
         <main class="container">
           <div class="col-8">
             <h2>Senators</h2>
@@ -75,19 +75,23 @@
             </div>
           </div>
 
-          <table id="senate-data" class="container table table-striped">
-            <thead>
-              <tr>
-                <td>Name</td>
-                <td>Party</td>
-                <td>State</td>
-                <td>Seniority</td>
-                <td>Votes with Party</td>
-              </tr>
-            </thead>
-
-            <tbody></tbody>
-          </table>
+          <div class="container "id="app_glance">
+            <table id="senate-data" class="container table table-striped">
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Party</td>
+                  <td>State</td>
+                  <td>Seniority</td>
+                  <td>Votes with Party</td>
+                </tr>
+              </thead>
+          
+              <tbody>
+                <tr v-for="(value, key) in members"></tr>
+              </tbody>
+            </table>
+          </div>  
     	</main>    
 
       <footer class="d-flex justify-content-center border-top p-3 bg-light">© 2016 TGIF | All Rigths Reserved</footer>
