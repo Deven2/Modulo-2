@@ -1,5 +1,4 @@
 let data;
-let url = "https://api.propublica.org/congress/v1/113/senate/members.json";
 
 let init = {
     method: 'GET',
@@ -28,44 +27,36 @@ const app = new Vue({
         selectedState : '',
         stateArray: [],
         current: 'home',
-        readMore: true
+        readMore: true,
+        isLoading: false
     },
 
     created(){
-        fetch(url, init)
-        .then(function(res){
-            if(res.ok){
-                return res.json();
-            }
-            else{
-                throw new Error (res.status)
-            }
-        })
-        .then(function(json){
-            data = json;
-            app.members = data.results[0].members;
-            app.getStats();
-            app.leastAttendance();
-            app.mostAttendance();
-            app.leastLoyal();
-            app.mostLoyal();
-            app.loadStates();
-            app.members.sort(function (a, b) {
-                if (a.last_name > b.last_name){
-                    return 1;
-                }
-                if (a.last_name < b.last_name){
-                    return -1;
-                }
-            })
-        })
-        
-        .catch(function(error){
-            console.log(error)
-        })
-        
     },
+
     methods:{
+        clearStats(){
+            this.members = [],
+            this.d_amount = 0,
+            this.r_amount = 0,
+            this.i_amount = 0,
+            this.total_amount = 0,
+            this.d_votes_with_party = 0,
+            this.r_votes_with_party = 0,
+            this.i_votes_with_party = 0,
+            this.total_votes_with_party = 0,
+            this.least_engaged = [],
+            this.most_engaged = [],
+            this.least_loyal = [],
+            this.most_loyal = [],
+            this.parties = ['Democrats', 'Republicans', 'Independents'],
+            this.checkedParties = ['D', 'R', 'I'],
+            this.selectedState = '',
+            this.stateArray = [],
+            this.readMore = true
+
+        },
+
         getStats(){
             this.members = data.results[0].members.filter(e => e.total_votes != 0);
             app.members.forEach(e => {
@@ -157,16 +148,6 @@ const app = new Vue({
                     this.least_loyal.push(this.members[i]);
                 }
             }
-
-            // CONDICIONES PARA EL PEOR 10% DE ATTENDANCE    
-            // for (let i = 0; i < this.members.length; i ++){
-            //     if (i == 0){
-            //         this.least_engaged.push(this.members[i]);
-            //     }
-            //     else if ((this.members.length/this.least_engaged.length >= 10) && ((this.members[i].missed_votes / this.members[i].total_votes)*100 <= (this.least_engaged[this.least_engaged.length-1].missed_votes / this.least_engaged[this.least_engaged.length-1].total_votes*100))){
-            //         this.least_engaged.push(this.members[i]);
-            //     }
-            // }
         },
 
         mostLoyal(){
@@ -201,6 +182,58 @@ const app = new Vue({
             this.stateArray.sort();
         },
 
+    async fetchData(){
+        await fetch(url, init)
+                .then(function(res){
+                    if(res.ok){    
+                        return res.json();
+                    }
+                    else{
+                        throw new Error (res.status)
+                    }
+                })
+                .then(function(json){
+                    this.isLoading = true;
+                    data = json;
+                    app.members = data.results[0].members;
+                    app.getStats();
+                    app.leastAttendance();
+                    app.mostAttendance();
+                    app.leastLoyal();
+                    app.mostLoyal();
+                    app.loadStates();
+                    app.members.sort(function (a, b) {
+                        if (a.last_name > b.last_name){
+                            return 1;
+                        }
+                        if (a.last_name < b.last_name){
+                            return -1;
+                        }
+                    })
+                })
+            
+                .catch(function(error){
+                    console.log(error)
+                })
+
+            
+        },
+
+        updateData(actualCurrent){
+            this.clearStats();
+            this.current = actualCurrent;
+
+            if (this.current == 'senate-list' || this.current == 'senate-engaged' || this.current == 'senate-party'){
+                url = "https://api.propublica.org/congress/v1/113/senate/members.json";
+                this.fetchData();
+            }
+            else if(this.current == 'house-list' || this.current == 'house-engaged' || this.current == 'house-party'){
+                url = "https://api.propublica.org/congress/v1/113/house/members.json";
+                this.fetchData();
+            }
+        }
+
+
 
     },
 
@@ -209,11 +242,6 @@ const app = new Vue({
             return this.members.filter(e => app.checkedParties.includes(e.party) && (app.selectedState == e.state || app.selectedState == ''))
         }
     }
-    
-
-
-
-    
 
 })
 
